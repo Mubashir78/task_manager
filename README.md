@@ -87,7 +87,7 @@ http://127.0.0.1:8000/docs
 
 You can test every endpoint directly in the browser - no Postman needed.
 
-![API Docs Overview](docs_overview.png)
+![API Docs Overview](middleware_logs.png)
 
 All 10 endpoints are grouped neatly by resource - **Users** and **Tasks** - with colour-coded HTTP methods.
 
@@ -216,7 +216,7 @@ Response:
 Every request passes through the logging middleware before reaching an endpoint.
 You can watch every call printed live in your terminal as you test:
 
-![Middleware terminal logs](middleware_logs.png)
+![Middleware terminal logs](docs_overview.png)
 
 Each line shows:
 - The HTTP method and full URL
