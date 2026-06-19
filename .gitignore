@@ -2,3 +2,10 @@
 venv
 .python-version 
 uv.lock
+
+FastAPI_Trainer_Reference.docx
+
+.tasks.db
+__pycache__/
+*.pyc
+.env

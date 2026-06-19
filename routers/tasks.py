@@ -11,7 +11,7 @@ def create_task(task: schemas.TaskCreate, db: Session = Depends(get_db)):
     return crud.create_task(db, task)
 
 
-@router.get("/", response_model=List(schemas.TaskResponse))
+@router.get("/", response_model=List[schemas.TaskResponse])
 def get_tasks(db: Session = Depends(get_db)):
     return crud.get_tasks(db)
 
