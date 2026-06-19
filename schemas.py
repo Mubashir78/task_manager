@@ -28,6 +28,10 @@ class UserBase(BaseModel):
 class UserCreate(UserBase):
     pass 
 
+class UserUpdate(BaseModel):
+    name: Optional[str] = None
+    email: Optional[str] = None
+
 
 class UserResponse(UserBase):
     id: int 
