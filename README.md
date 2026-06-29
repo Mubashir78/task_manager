@@ -100,7 +100,7 @@ All 10 endpoints are grouped neatly by resource - **Users** and **Tasks** - with
 | Method | URL | Description |
 |--------|-----|-------------|
 | `POST` | `/users/` | Create a new user |
-| `GET` | `/users/` | List all users |
+| `GET` | `/users/` | List users with optional `skip` and `limit` query params |
 | `GET` | `/users/{id}` | Get one user (includes their tasks) |
 | `PUT` | `/users/{id}` | Update a user's name or email |
 | `DELETE` | `/users/{id}` | Delete a user |
@@ -110,7 +110,7 @@ All 10 endpoints are grouped neatly by resource - **Users** and **Tasks** - with
 | Method | URL | Description |
 |--------|-----|-------------|
 | `POST` | `/tasks/` | Create a new task |
-| `GET` | `/tasks/` | List all tasks |
+| `GET` | `/tasks/` | List tasks with optional `skip` and `limit` query params |
 | `GET` | `/tasks/{id}` | Get one task by ID |
 | `PUT` | `/tasks/{id}` | Update a task |
 | `DELETE` | `/tasks/{id}` | Delete a task |
