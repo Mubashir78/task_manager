@@ -1,7 +1,7 @@
 # Contributing to DevBoard
 
 Welcome! DevBoard is an open-hours project built on top of the [Navas Task Manager API](https://dev.to/navas_herbert/building-a-rest-api-with-fastapi-from-scratch-full-crud-sqlite-middleware-cors-j92).
-The goal is to evolve a basic FastAPI CRUD app into a full collaborative task board — one PR at a time.
+The goal is to evolve a basic FastAPI CRUD app into a full collaborative task board - one PR at a time.
 
 Every merged contribution is a real open source commit on your GitHub profile. 
 
@@ -44,11 +44,11 @@ git commit -m "feat: add priority field to Task model (#1)"
 ```
 
 Prefix convention:
-- `feat:` — new feature
-- `fix:` — bug fix
-- `docs:` — documentation only
-- `test:` — adding or updating tests
-- `refactor:` — code change with no feature/fix
+- `feat:` - new feature
+- `fix:` - bug fix
+- `docs:` - documentation only
+- `test:` - adding or updating tests
+- `refactor:` - code change with no feature/fix
 
 ### 6. Push and open a Pull Request
 
@@ -90,4 +90,4 @@ Comment on an issue before starting so others know it's taken.
 
 ## Questions?
 
-Reach out on WhatsApp or open a GitHub Discussion. Don't be afraid to ask — that's what open hours is for.
+Reach out on WhatsApp or open a GitHub Discussion. Don't be afraid to ask - that's what open hours is for.
