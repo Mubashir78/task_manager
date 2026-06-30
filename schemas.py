@@ -6,16 +6,19 @@ class TaskBase(BaseModel):
     description: Optional[str] = None 
 
 class TaskCreate(TaskBase):
-    owner_id: int 
+    owner_id: int
+    priority: str = "medium"
 
 class TaskUpdate(BaseModel):
     title: Optional[str] = None 
     description: Optional[str] = None 
-    completed: Optional[bool] = None 
+    completed: Optional[bool] = None
+    priority: Optional[str] = None
 
 class TaskResponse(TaskBase):
     id: int 
     completed: bool 
+    priority: str
     owner_id: int 
 
     class Config:
