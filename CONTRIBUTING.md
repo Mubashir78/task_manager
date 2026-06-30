@@ -90,4 +90,4 @@ Comment on an issue before starting so others know it's taken.
 
 ## Questions?
 
-Reach out on WhatsApp or open a GitHub Discussion. Don't be afraid to ask - that's what open hours is for.
+Reach out on WhatsApp at +254715623803 or send an email to navasherbert01@gmail.com. You can also open a GitHub Discussion. Don't be afraid to ask - that's what open hours is for.
