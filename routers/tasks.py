@@ -12,8 +12,8 @@ def create_task(task: schemas.TaskCreate, db: Session = Depends(get_db)):
 
 
 @router.get("/", response_model=List[schemas.TaskResponse])
-def get_tasks(db: Session = Depends(get_db)):
-    return crud.get_tasks(db)
+def get_tasks(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
+    return crud.get_tasks(db, skip=skip, limit=limit)
 
 
 @router.get("/{task_id}", response_model=schemas.TaskResponse)
