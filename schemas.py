@@ -1,3 +1,4 @@
+from datetime import date
 from pydantic import BaseModel
 from typing import Optional, List
 
@@ -8,17 +9,20 @@ class TaskBase(BaseModel):
 class TaskCreate(TaskBase):
     owner_id: int
     priority: str = "medium"
+    due_date: Optional[date] = None
 
 class TaskUpdate(BaseModel):
     title: Optional[str] = None 
     description: Optional[str] = None 
     completed: Optional[bool] = None
     priority: Optional[str] = None
+    due_date: Optional[date] = None
 
 class TaskResponse(TaskBase):
     id: int 
     completed: bool 
     priority: str
+    due_date: Optional[date] = None
     owner_id: int 
 
     class Config:
