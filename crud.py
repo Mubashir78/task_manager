@@ -30,10 +30,12 @@ def create_task(db:Session, task: schemas.TaskCreate):
 def get_task(db:Session, task_id: int):
     return db.query(models.Task).filter(models.Task.id == task_id).first()
 
-def get_tasks(db: Session, skip: int = 0, limit: int = 10, completed: Optional[bool] = None):
+def get_tasks(db: Session, skip: int = 0, limit: int = 10, completed: Optional[bool] = None, owner_id: Optional[int] = None):
     query = db.query(models.Task)
     if completed is not None:
         query = query.filter(models.Task.completed == completed)
+    if owner_id is not None:
+        query = query.filter(models.Task.owner_id == owner_id)
     return query.offset(skip).limit(limit).all()
 
 def update_task(db:Session, task_id: int, data: schemas.TaskUpdate):
