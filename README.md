@@ -117,6 +117,24 @@ All 10 endpoints are grouped neatly by resource - **Users** and **Tasks** - with
 
 ---
 
+## Pagination
+
+Both list endpoints (`GET /tasks/` and `GET /users/`) support `skip` and `limit` as
+query parameters:
+
+- `skip` — how many records to skip from the start of the result set (default `0`)
+- `limit` — the maximum number of records to return (default `10`)
+
+```
+GET /tasks/?skip=0&limit=5   →  first 5 tasks
+GET /tasks/?skip=5&limit=5   →  next 5 tasks
+GET /tasks/                  →  first 10 tasks (defaults)
+```
+
+The same behaviour applies to `GET /users/`.
+
+---
+
 ## Testing the API - Step by Step
 
 Follow this order to see everything working together.
@@ -297,7 +315,6 @@ Good next steps once you are comfortable with this project:
 - Filter tasks by `owner_id` so users only see their own tasks
 - Add a `due_date` field to Task using SQLAlchemy's `DateTime` column
 - Switch from SQLite to PostgreSQL by changing the `DATABASE_URL`
-- Add pagination to `GET /tasks/` using `skip` and `limit` query parameters
 
 ---
 
