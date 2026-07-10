@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 from typing import List, Optional
 import crud, schemas
@@ -6,14 +6,17 @@ from database import get_db
 
 router = APIRouter(prefix="/tasks", tags=["Tasks"])
 
-@router.post("/", response_model=schemas.TaskResponse)
+@router.post("/", response_model=schemas.TaskResponse, status_code=201)
 def create_task(task: schemas.TaskCreate, db: Session = Depends(get_db)):
-    return crud.create_task(db, task)
+    result = crud.create_task(db, task)
+    if not result:
+        raise HTTPException(status_code=400, detail="Invalid owner_id or conflicting data")
+    return result
 
 
 @router.get("/", response_model=List[schemas.TaskResponse])
-def get_tasks(skip: int = 0, limit: int = 10, completed: Optional[bool] = None, owner_id: Optional[int] = None, db: Session = Depends(get_db)):
-    return crud.get_tasks(db, skip=skip, limit=limit, completed=completed, owner_id=owner_id)
+def get_tasks(skip: int = Query(0, ge=0), limit: int = Query(10, ge=1, le=1000), completed: Optional[bool] = None, db: Session = Depends(get_db)):
+    return crud.get_tasks(db, skip=skip, limit=limit, completed=completed)
 
 
 @router.get("/{task_id}", response_model=schemas.TaskResponse)

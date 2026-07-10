@@ -13,14 +13,12 @@ app = FastAPI(
     version="1.0.0"
 )
 
-origins = [
-    "http://localhost:3000",    # React dev server
-    "http://localhost:5173",    # Vite dev server
-]
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "http://localhost:3000",    # React dev server
+        "http://localhost:5173",    # Vite dev server
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

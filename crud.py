@@ -1,14 +1,22 @@
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 from typing import Optional
-import models, schemas 
+import models, schemas
 
 
 def create_user(db: Session, user: schemas.UserCreate):
+    existing = db.query(models.User).filter(models.User.email == user.email).first()
+    if existing:
+        return None
     db_user = models.User(name=user.name, email=user.email)
     db.add(db_user)
-    db.commit()
-    db.refresh(db_user)
-    return db_user
+    try:
+        db.commit()
+        db.refresh(db_user)
+        return db_user
+    except IntegrityError:
+        db.rollback()
+        return None
 
 
 def get_user(db: Session, user_id: int):
@@ -20,22 +28,27 @@ def get_users(db: Session, skip: int = 0, limit: int = 10):
 
 
 
-def create_task(db:Session, task: schemas.TaskCreate):
+def create_task(db: Session, task: schemas.TaskCreate):
+    owner = db.query(models.User).filter(models.User.id == task.owner_id).first()
+    if not owner:
+        return None
     db_task = models.Task(**task.model_dump())
     db.add(db_task)
-    db.commit()
-    db.refresh(db_task)
-    return db_task
+    try:
+        db.commit()
+        db.refresh(db_task)
+        return db_task
+    except IntegrityError:
+        db.rollback()
+        return None
 
 def get_task(db:Session, task_id: int):
     return db.query(models.Task).filter(models.Task.id == task_id).first()
 
-def get_tasks(db: Session, skip: int = 0, limit: int = 10, completed: Optional[bool] = None, owner_id: Optional[int] = None):
+def get_tasks(db: Session, skip: int = 0, limit: int = 10, completed: Optional[bool] = None):
     query = db.query(models.Task)
     if completed is not None:
         query = query.filter(models.Task.completed == completed)
-    if owner_id is not None:
-        query = query.filter(models.Task.owner_id == owner_id)
     return query.offset(skip).limit(limit).all()
 
 def update_task(db:Session, task_id: int, data: schemas.TaskUpdate):
